@@ -1,7 +1,7 @@
 import React from "react";
 import RecentlyPlayed from "./RecentlyPlayed";
 
-const Recents = () => {
+const Recents = ({ setSong }) => {
   const songs = [
     {
       id: 1,
@@ -75,13 +75,15 @@ const Recents = () => {
     <div className="space-y-2 pt-2">
       {songs.reverse().map((song) => {
         return (
-          <RecentlyPlayed
-            title={song.title}
-            key={song.id}
-            image={song.image}
-            duration={song.duration}
-            artist={song.artist}
-          />
+          <div onClick={() => setSong(song)}>
+            <RecentlyPlayed
+              title={song.title}
+              key={song.id}
+              image={song.image}
+              duration={song.duration}
+              artist={song.artist}
+            />
+          </div>
         );
       })}
     </div>

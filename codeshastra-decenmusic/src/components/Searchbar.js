@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { BiSearchAlt } from "react-icons/bi";
 import axios from "axios";
-import getGlobalTopArtists from "";
-
 
 const Searchbar = () => {
   const [search, setSearch] = useState("");
-  const [results,setresults] = useState([]);
- useEffect(() => {
-   //feth and store
-  //  (async function () {
-  //    const res = await getGlobalTopArtists();
-  //    setresults(res.json());
-  //  });
-  
-   fetch('https://ws.audioscrobbler.com/2.0/')
-     .then(response => response.json())
-     .then(data => console.log(data))
- },[search])
+  const [results, setresults] = useState([]);
+  useEffect(() => {
+    //feth and store
+    //  (async function () {
+    //    const res = await getGlobalTopArtists();
+    //    setresults(res.json());
+    //  });
+
+    fetch("https://ws.audioscrobbler.com/2.0/")
+      .then((response) => response.json())
+      .then((data) => console.log(data));
+  }, [search]);
 
   useEffect(() => {
     let cancel = false;
@@ -38,7 +36,7 @@ const Searchbar = () => {
 
   return (
     <div className="flex md:px-8 px-6">
-      <div className="mt-2 w-full md:w-4/5 flex justify-center items-center bg-white rounded-full px-4">
+      <div className="mt-2 w-full flex justify-center items-center bg-white rounded-full px-4">
         <BiSearchAlt className="h-6 w-6" />
         <input
           type="text"
@@ -48,9 +46,8 @@ const Searchbar = () => {
           className="flex-1 p-4 rounded-full focus:border-0 focus:outline-none"
         />
       </div>
-    
     </div>
   );
-}
-  //drop down results
+};
+//drop down results
 export default Searchbar;
