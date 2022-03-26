@@ -1,16 +1,9 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Login from "./components/Login";
+import Login from "./screens/Login";
 import Home from "./screens/Home";
 
 function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/home" element={<Home />} />
-      </Routes>
-    </Router>
-  );
+  const code = new URLSearchParams(window.location.search).get("code");
+  return code ? <Home code={code} /> : <Login />;
 }
 
 export default App;
