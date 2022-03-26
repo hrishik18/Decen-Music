@@ -1,7 +1,7 @@
 import React from "react";
-import SongCard from "./SongCard";
+import RecentlyPlayed from "./RecentlyPlayed";
 
-const Songs = () => {
+const Recents = () => {
   const songs = [
     {
       id: 1,
@@ -71,17 +71,16 @@ const Songs = () => {
       image: "https://i.scdn.co/image/ab67616d0000b273a7c10595167c713a2df0f187",
     },
   ];
-
   return (
-    <div className="w-full flex overflow-x-scroll pl-4 md:pl-8 pt-2 scrollbar-hide space-x-4">
-      {songs.map((song) => {
+    <div className="space-y-2 pt-2">
+      {songs.reverse().map((song) => {
         return (
-          <SongCard
-            key={song.id}
+          <RecentlyPlayed
             title={song.title}
-            artist={song.artist}
-            duration={song.duration}
+            key={song.id}
             image={song.image}
+            duration={song.duration}
+            artist={song.artist}
           />
         );
       })}
@@ -89,4 +88,4 @@ const Songs = () => {
   );
 };
 
-export default Songs;
+export default Recents;
