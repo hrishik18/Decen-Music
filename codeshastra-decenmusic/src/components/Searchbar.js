@@ -1,56 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { BiSearchAlt } from "react-icons/bi";
-import SpotifyWebApi from "spotify-web-api-node";
-import useAuth from "../hooks/useAuth";
+import getGlobalTopArtists from "";
 
-const Searchbar = ({ code }) => {
+
+const Searchbar = () => {
   const [search, setSearch] = useState("");
-  const spotifyApi = new SpotifyWebApi({
-    clientId: "ca2dd41cbe3045cfa0c744d4e4dec6c4",
-  });
-  const accessToken = useAuth(code);
-  const [searchResults, setSearchResults] = useState([]);
-  const [playingTrack, setPlayingTrack] = useState();
-  function chooseTrack(track) {
-    setPlayingTrack(track);
-    setSearch("");
-  }
-
-  useEffect(() => {
-    if (!accessToken) return;
-    else spotifyApi.setAccessToken(accessToken);
-    return;
-  }, [accessToken]);
-
-  useEffect(() => {
-    if (!search) return setSearchResults([]);
-    if (!accessToken) return;
-
-    let cancel = false;
-    spotifyApi.searchTracks(search).then((res) => {
-      if (cancel) return;
-      setSearchResults(
-        res.body.tracks.items.map((track) => {
-          const smallestAlbumImage = track.album.images.reduce(
-            (smallest, image) => {
-              if (image.height < smallest.height) return image;
-              return smallest;
-            },
-            track.album.images[0]
-          );
-
-          return {
-            artist: track.artists[0].name,
-            title: track.name,
-            uri: track.uri,
-            albumUrl: smallestAlbumImage.url,
-          };
-        })
-      );
-    });
-
-    return () => (cancel = true);
-  }, [search, accessToken]);
+  const [results,setresults] = useState([]);
+ useEffect(() => {
+   //feth and store
+  //  (async function () {
+  //    const res = await getGlobalTopArtists();
+  //    setresults(res.json());
+  //  });
+  
+   fetch('https://ws.audioscrobbler.com/2.0/')
+     .then(response => response.json())
+     .then(data => console.log(data))
+ },[search])
 
   return (
     <div className="flex justify-center">
@@ -64,8 +30,9 @@ const Searchbar = ({ code }) => {
           className="flex-1 p-4 rounded-full focus:border-0 focus:outline-none"
         />
       </div>
+    
     </div>
   );
 };
-
+  //drop down results
 export default Searchbar;
