@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BiSearchAlt } from "react-icons/bi";
+import axios from "axios";
 import getGlobalTopArtists from "";
 
 
@@ -18,6 +19,23 @@ const Searchbar = () => {
      .then(data => console.log(data))
  },[search])
 
+  useEffect(() => {
+    let cancel = false;
+    if (cancel) return;
+    if (!search) return;
+    const fetch = async () => {
+      const res = await axios.get(
+        `https://apg-saavn-api.herokuapp.com/result/?q=${search}`
+      );
+      const data = res.json();
+      console.log(data);
+      //setResults(data);
+      console.log(results);
+    };
+    fetch();
+    return () => (cancel = true);
+  }, [search]);
+
   return (
     <div className="flex justify-center">
       <div className="mt-4 w-4/5 flex justify-center items-center bg-white rounded-full px-4">
@@ -33,6 +51,6 @@ const Searchbar = () => {
     
     </div>
   );
-};
+}
   //drop down results
 export default Searchbar;
