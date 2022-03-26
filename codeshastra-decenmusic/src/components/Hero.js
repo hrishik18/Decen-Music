@@ -1,15 +1,9 @@
 import React from "react";
 import Player from "./Player";
-import Songs from "./Songs";
 
-const Hero = () => {
+const Hero = ({ accessToken }) => {
   return (
     <div>
-      <div className="pt-6 pl-4 md:pl-8">
-        <span className="font-light md:text-md">What's hot 🔥</span>
-        <div className="text-2xl md:text-3xl font-semibold">Trending</div>
-      </div>
-      <Songs />
       <div className="text-2xl md:text-3xl font-semibold pt-6 pl-4 md:pl-8">
         Now Playing
       </div>
@@ -22,7 +16,8 @@ const Hero = () => {
           />
           <div className="font-bold text-md">Everything</div>
           <div className="text-sm">Diamond Eyes</div>
-          <Player />
+
+          <Player accessToken={accessToken} />
         </div>
         <div className="w-1/2 md:w-3/5 bg-black">Recently Played</div>
       </div>
