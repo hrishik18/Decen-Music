@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { BiSearchAlt } from "react-icons/bi";
 import axios from "axios";
-import getGlobalTopArtists from "";
 
 
 const Searchbar = () => {
-  const [search, setSearch] = useState("");
-  const [results,setresults] = useState([]);
+  const [search, setSearch] = useState(null);
+  const [results,setresults] = useState(null);
  useEffect(() => {
    //feth and store
   //  (async function () {
   //    const res = await getGlobalTopArtists();
   //    setresults(res.json());
   //  });
-  
    fetch('https://ws.audioscrobbler.com/2.0/')
      .then(response => response.json())
      .then(data => console.log(data))
