@@ -1,56 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BiSearchAlt } from "react-icons/bi";
-import SpotifyWebApi from "spotify-web-api-node";
-import useAuth from "../hooks/useAuth";
+import axios from "axios";
 
-const Searchbar = ({ code }) => {
+const Searchbar = () => {
   const [search, setSearch] = useState("");
-  const spotifyApi = new SpotifyWebApi({
-    clientId: "ca2dd41cbe3045cfa0c744d4e4dec6c4",
-  });
-  const accessToken = useAuth(code);
-  const [searchResults, setSearchResults] = useState([]);
-  const [playingTrack, setPlayingTrack] = useState();
-  function chooseTrack(track) {
-    setPlayingTrack(track);
-    setSearch("");
-  }
-
+  const [results, setResults] = useState("");
   useEffect(() => {
-    if (!accessToken) return;
-    else spotifyApi.setAccessToken(accessToken);
-    return;
-  }, [accessToken]);
-
-  useEffect(() => {
-    if (!search) return setSearchResults([]);
-    if (!accessToken) return;
-
     let cancel = false;
-    spotifyApi.searchTracks(search).then((res) => {
-      if (cancel) return;
-      setSearchResults(
-        res.body.tracks.items.map((track) => {
-          const smallestAlbumImage = track.album.images.reduce(
-            (smallest, image) => {
-              if (image.height < smallest.height) return image;
-              return smallest;
-            },
-            track.album.images[0]
-          );
-
-          return {
-            artist: track.artists[0].name,
-            title: track.name,
-            uri: track.uri,
-            albumUrl: smallestAlbumImage.url,
-          };
-        })
+    if (cancel) return;
+    if (!search) return;
+    const fetch = async () => {
+      const res = await axios.get(
+        `https://apg-saavn-api.herokuapp.com/result/?q=${search}`
       );
-    });
-
+      const data = res.json();
+      setResults(data);
+      console.log(results);
+    };
+    fetch();
     return () => (cancel = true);
-  }, [search, accessToken]);
+  }, [search]);
 
   return (
     <div className="flex justify-center">
