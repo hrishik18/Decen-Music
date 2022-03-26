@@ -22,8 +22,8 @@ const Searchbar = () => {
   }, [search]);
 
   return (
-    <div className="flex justify-center">
-      <div className="mt-4 w-4/5 flex justify-center items-center bg-white rounded-full px-4">
+    <div className="flex md:px-8 px-6">
+      <div className="mt-2 w-full md:w-4/5 flex justify-center items-center bg-white rounded-full px-4">
         <BiSearchAlt className="h-6 w-6" />
         <input
           type="text"
