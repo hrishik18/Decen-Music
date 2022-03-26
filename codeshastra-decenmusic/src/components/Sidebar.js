@@ -14,7 +14,7 @@ const Sidebar = () => {
 
   const [selectedIcon, setSelectedIcon] = useState("HOME");
   return (
-    <div className="md:w-1/4 lg:w-1/5 px-8 pt-6 space-y-2 bg-white hidden md:block min-w-fit">
+    <div className="md:w-1/4 lg:w-1/5 px-8 pt-6 space-y-2 bg-white hidden md:block min-w-fit shadow-md">
       <div className="flex items-center space-x-2 mb-4">
         <img
           src="https://is2-ssl.mzstatic.com/image/thumb/Purple115/v4/24/5a/3f/245a3f5e-0b82-5011-895d-ea58b8226fa5/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/1024x1024bb.png"
@@ -32,7 +32,7 @@ const Sidebar = () => {
           className={`${styles.button} ${
             selectedIcon === "HOME"
               ? "bg-black text-white"
-              : "bg-white text-black"
+              : "bg-white text-black hover:bg-slate-100"
           } `}
         >
           <RiHome2Fill className="w-5 h-5" />
@@ -43,7 +43,7 @@ const Sidebar = () => {
           className={`${styles.button} ${
             selectedIcon === "TRENDS"
               ? "bg-black text-white"
-              : "bg-white text-black"
+              : "bg-white text-black hover:bg-slate-100"
           } `}
         >
           <HiTrendingUp className="w-5 h-5" />
@@ -54,7 +54,7 @@ const Sidebar = () => {
           className={`${styles.button} ${
             selectedIcon === "FEED"
               ? "bg-black text-white"
-              : "bg-white text-black"
+              : "bg-white text-black hover:bg-slate-100"
           } `}
         >
           <AiFillCompass className="w-5 h-5" />
@@ -68,7 +68,7 @@ const Sidebar = () => {
           className={`${styles.button} ${
             selectedIcon === "NEW"
               ? "bg-black text-white"
-              : "bg-white text-black"
+              : "bg-white text-black hover:bg-slate-100"
           } `}
         >
           <MdFiberNew className="w-5 h-5" />
@@ -79,7 +79,7 @@ const Sidebar = () => {
           className={`${styles.button} ${
             selectedIcon === "RELEASE CALANDER"
               ? "bg-black text-white"
-              : "bg-white text-black"
+              : "bg-white text-black hover:bg-slate-100"
           } `}
         >
           <BiCalendar className="w-5 h-5" />
@@ -90,7 +90,7 @@ const Sidebar = () => {
           className={`${styles.button} ${
             selectedIcon === "EVENTS"
               ? "bg-black text-white"
-              : "bg-white text-black"
+              : "bg-white text-black hover:bg-slate-100"
           } `}
         >
           <RiCoupon3Fill className="w-5 h-5" />
@@ -104,7 +104,7 @@ const Sidebar = () => {
           className={`${styles.button} ${
             selectedIcon === "FAVOURITE SONGS"
               ? "bg-black text-white"
-              : "bg-white text-black"
+              : "bg-white text-black hover:bg-slate-100"
           } `}
         >
           <RiHeart2Fill className="w-5 h-5" />
@@ -115,7 +115,7 @@ const Sidebar = () => {
           className={`${styles.button} ${
             selectedIcon === "ARTISTS"
               ? "bg-black text-white"
-              : "bg-white text-black"
+              : "bg-white text-black hover:bg-slate-100"
           } `}
         >
           <MdPeople className="w-5 h-5" />

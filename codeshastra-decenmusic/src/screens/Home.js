@@ -5,7 +5,7 @@ import Hero from "../components/Hero";
 
 const Home = () => {
   return (
-    <div className="min-h-screen bg-slate-100 overflow-x-hidden md:overflow-x-visible flex overflow-y-hidden">
+    <div className="min-h-screen bg-slate-100 overflow-x-hidden flex overflow-y-hidden">
       <Sidebar />
       <div className="flex-1 w-full flex-col">
         <Searchbar />
