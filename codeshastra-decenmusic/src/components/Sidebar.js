@@ -5,6 +5,7 @@ import { HiTrendingUp } from "react-icons/hi";
 import { MdFiberNew, MdPeople } from "react-icons/md";
 import { RiCoupon3Fill } from "react-icons/ri";
 import { BiCalendar } from "react-icons/bi";
+import { FiUpload } from "react-icons/fi";
 
 const Sidebar = () => {
   const styles = {
@@ -120,6 +121,17 @@ const Sidebar = () => {
         >
           <MdPeople className="w-5 h-5" />
           <div className="text-lg font-medium">Artists</div>
+        </div>
+        <div
+          onClick={() => setSelectedIcon("UPLOAD")}
+          className={`${styles.button} ${
+            selectedIcon === "UPLOAD"
+              ? "bg-black text-white"
+              : "bg-white text-black hover:bg-slate-100"
+          } `}
+        >
+          <FiUpload className="w-5 h-5" />
+          <div className="text-lg font-medium">Upload</div>
         </div>
       </div>
     </div>

@@ -14,12 +14,7 @@ const NowPlaying = ({ song }) => {
           <div>{song.artist}</div>
         </div>
       </div>
-      <audio
-        src="https://open.spotify.com/track/6XHVuErjQ4XNm6nDPVCxVX?si=06ea52f6d2c34363"
-        controls
-        autoPlay
-        className="flex-1 md:max-w-lg"
-      />
+      <audio src={song.uri} controls autoPlay className="flex-1 md:max-w-lg" />
     </div>
   );
 };

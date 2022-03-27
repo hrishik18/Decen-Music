@@ -75,10 +75,9 @@ const Recents = ({ setSong }) => {
     <div className="space-y-2 pt-2">
       {songs.reverse().map((song) => {
         return (
-          <div onClick={() => setSong(song)}>
+          <div onClick={() => setSong(song)} key={song.id}>
             <RecentlyPlayed
               title={song.title}
-              key={song.id}
               image={song.image}
               duration={song.duration}
               artist={song.artist}

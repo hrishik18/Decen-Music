@@ -1,41 +1,48 @@
 import React, { useEffect, useState } from "react";
 import { BiSearchAlt } from "react-icons/bi";
 import axios from "axios";
+import SpotifyWebApi from "spotify-web-api-node";
 
-const Searchbar = () => {
+const Searchbar = ({ setSong }) => {
   const [search, setSearch] = useState("");
-  const [results, setresults] = useState([]);
-  useEffect(() => {
-    //feth and store
-    //  (async function () {
-    //    const res = await getGlobalTopArtists();
-    //    setresults(res.json());
-    //  });
+  const [results, setResults] = useState([]);
+  var SpotifyWebApi = require("spotify-web-api-node");
 
-    fetch("https://ws.audioscrobbler.com/2.0/")
-      .then((response) => response.json())
-      .then((data) => console.log(data));
-  }, [search]);
+  let spotifyApi = new SpotifyWebApi();
+  spotifyApi.setAccessToken(
+    "BQDomUGTuIlezVCQbGPr_-iWzrJjwuiZzn-1LrFBXKTVceK_usUMjdjXEgpB9-XCh2BCAcpXRmLQs2Sfr9mQPOmtlhmmJzivkEGIOPAmJQfJLnq4k3wE-Bh9ewkyzCICEJ6keYHWvYEmJpMieqPZbV-2lXfhd-4cV9AjY0nAtRUDyrLDQbuFCLbsTexTa83X0nE1w5jxnRXINpNqrAYs"
+  );
 
   useEffect(() => {
+    if (!search) return setResults([]);
     let cancel = false;
-    if (cancel) return;
-    if (!search) return;
-    const fetch = async () => {
-      const res = await axios.get(
-        `https://apg-saavn-api.herokuapp.com/result/?q=${search}`
+    spotifyApi.searchTracks(search).then((res) => {
+      if (cancel) return;
+      setResults(
+        res.body.tracks.items.map((track) => {
+          const smallestAlbumImage = track.album.images.reduce(
+            (smallest, image) => {
+              if (image.height < smallest.height) return image;
+              return smallest;
+            },
+            track.album.images[0]
+          );
+
+          return {
+            artist: track.artists[0].name,
+            title: track.name,
+            uri: track.uri,
+            image: smallestAlbumImage.url,
+          };
+        })
       );
-      const data = res.json();
-      console.log(data);
-      //setResults(data);
-      console.log(results);
-    };
-    fetch();
+    });
+
     return () => (cancel = true);
   }, [search]);
 
   return (
-    <div className="flex md:px-8 px-6">
+    <div className="md:px-8 px-6">
       <div className="mt-2 w-full flex justify-center items-center bg-white rounded-full px-4">
         <BiSearchAlt className="h-6 w-6" />
         <input
@@ -45,6 +52,36 @@ const Searchbar = () => {
           placeholder="Search for Artists/Songs"
           className="flex-1 p-4 rounded-full focus:border-0 focus:outline-none"
         />
+      </div>
+      <div
+        className={`space-y-2 mt-2 bg-slate-200 rounded-2xl ${
+          search ? "h-64 overflow-y-auto" : ""
+        }`}
+      >
+        {results.map((result) => {
+          return (
+            <div
+              className="flex p-2 items-center space-x-4 w-full hover:cursor-pointer rounded-2xl"
+              onClick={() => {
+                setResults([]);
+                setSearch("");
+                setSong(result);
+              }}
+            >
+              <img
+                src={result.image}
+                alt={result.title}
+                className="h-12 w-12 rounded-xl"
+              />
+              <div>
+                <div className="font-bold text-md truncate w-64">
+                  {result.title}
+                </div>
+                <div className="text-sm">{result.artist}</div>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

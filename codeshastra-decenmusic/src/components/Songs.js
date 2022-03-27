@@ -76,9 +76,12 @@ const Songs = ({ setSong }) => {
     <div className="w-full flex overflow-x-scroll pl-4 md:pl-8 pt-2 scrollbar-hide space-x-4">
       {songs.map((song) => {
         return (
-          <div onClick={() => setSong(song)} className="min-w-fit">
+          <div
+            onClick={() => setSong(song)}
+            className="min-w-fit"
+            key={song.id}
+          >
             <SongCard
-              key={song.id}
               title={song.title}
               artist={song.artist}
               duration={song.duration}
