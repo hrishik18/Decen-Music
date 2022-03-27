@@ -1,7 +1,7 @@
 import React from "react";
 import SongCard from "./SongCard";
 
-const Songs = () => {
+const Songs = ({ setSong }) => {
   const songs = [
     {
       id: 1,
@@ -76,13 +76,15 @@ const Songs = () => {
     <div className="w-full flex overflow-x-scroll pl-4 md:pl-8 pt-2 scrollbar-hide space-x-4">
       {songs.map((song) => {
         return (
-          <SongCard
-            key={song.id}
-            title={song.title}
-            artist={song.artist}
-            duration={song.duration}
-            image={song.image}
-          />
+          <div onClick={() => setSong(song)} className="min-w-fit">
+            <SongCard
+              key={song.id}
+              title={song.title}
+              artist={song.artist}
+              duration={song.duration}
+              image={song.image}
+            />
+          </div>
         );
       })}
     </div>
