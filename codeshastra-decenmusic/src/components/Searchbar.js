@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { BiSearchAlt } from "react-icons/bi";
 import axios from "axios";
+import SpotifyWebApi from "spotify-web-api-node";
 
-
+const access_token = "BQDomUGTuIlezVCQbGPr_-iWzrJjwuiZzn-1LrFBXKTVceK_usUMjdjXEgpB9-XCh2BCAcpXRmLQs2Sfr9mQPOmtlhmmJzivkEGIOPAmJQfJLnq4k3wE-Bh9ewkyzCICEJ6keYHWvYEmJpMieqPZbV-2lXfhd-4cV9AjY0nAtRUDyrLDQbuFCLbsTexTa83X0nE1w5jxnRXINpNqrAYs";
+const refresh_token = "AQDtq6oWAx_aPxbCj1wmbHFBGR47Z9NJuiN7r3F8skzsW-ElI5xEKNrqWQWfAA52K7hyPtwWB5_Xk5p0-gbgtiNq22_HrX9jW6BnweQOe5JgLgEGIPymGPTVTPYqmeG0txA";
 const Searchbar = () => {
   const [search, setSearch] = useState(null);
   const [results,setresults] = useState(null);
  useEffect(() => {
-   //feth and store
-  //  (async function () {
-  //    const res = await getGlobalTopArtists();
-  //    setresults(res.json());
-  //  });
-   fetch('https://ws.audioscrobbler.com/2.0/')
-     .then(response => response.json())
-     .then(data => console.log(data))
+   var spotifyApi = new SpotifyWebApi({
+     clientId: 'fcecfc72172e4cd267473117a17cbd4d',
+     clientSecret: 'a6338157c9bb5ac9c71924cb2940e1a7',
+     redirectUri: 'http://www.example.com/callback'
+   });
  },[search])
 
   useEffect(() => {
