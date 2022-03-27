@@ -2,7 +2,7 @@ import React from "react";
 
 const NowPlaying = ({ song }) => {
   return (
-    <div className="sticky bottom-0 bg-black text-white rounded-full flex items-center space-x-4 shadow-lg px-4 py-2 justify-between">
+    <div className="sticky bottom-0 bg-slate-100 text-black rounded-full flex items-center space-x-4 shadow-lg px-4 py-2 justify-between">
       <div className="flex space-x-4">
         <img
           src={song.image}

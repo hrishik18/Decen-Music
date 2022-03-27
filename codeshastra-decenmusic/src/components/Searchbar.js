@@ -8,7 +8,7 @@ const Searchbar = ({ setSong }) => {
 
   let spotifyApi = new SpotifyWebApi();
   spotifyApi.setAccessToken(
-     "" 
+    "BQBK2Nmz7mM-LB0D-ZyKazfWQB1cKIMp_JaADbZdGRYg_Klnq3h1K9LXnLILfebtJ9kWpF1bydmCFdWZauHHXGhhBJ6d5ftxb4HxGtcfTiDLl64g93yBvwhZLRUjm_FI9zHN6HaeJ9n6VXGxKb59M-2WKEykW4sxm62XUQofENrHTOdMWHn6ydFgcBD_StqyNGckdORr38Wukttop1ib"
   );
 
   useEffect(() => {
