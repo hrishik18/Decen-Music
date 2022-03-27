@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { BiSearchAlt } from "react-icons/bi";
-import SpotifyWebApi from "spotify-web-api-node";
 
 const Searchbar = ({ setSong }) => {
   const [search, setSearch] = useState("");
@@ -9,7 +8,7 @@ const Searchbar = ({ setSong }) => {
 
   let spotifyApi = new SpotifyWebApi();
   spotifyApi.setAccessToken(
-    "BQDomUGTuIlezVCQbGPr_-iWzrJjwuiZzn-1LrFBXKTVceK_usUMjdjXEgpB9-XCh2BCAcpXRmLQs2Sfr9mQPOmtlhmmJzivkEGIOPAmJQfJLnq4k3wE-Bh9ewkyzCICEJ6keYHWvYEmJpMieqPZbV-2lXfhd-4cV9AjY0nAtRUDyrLDQbuFCLbsTexTa83X0nE1w5jxnRXINpNqrAYs"
+     "" 
   );
 
   useEffect(() => {
