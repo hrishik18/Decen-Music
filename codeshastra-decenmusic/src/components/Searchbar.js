@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { BiSearchAlt } from "react-icons/bi";
-import axios from "axios";
 import SpotifyWebApi from "spotify-web-api-node";
 
 const Searchbar = ({ setSong }) => {
@@ -61,6 +60,7 @@ const Searchbar = ({ setSong }) => {
         {results.map((result) => {
           return (
             <div
+              key={result.id}
               className="flex p-2 items-center space-x-4 w-full hover:cursor-pointer rounded-2xl"
               onClick={() => {
                 setResults([]);
